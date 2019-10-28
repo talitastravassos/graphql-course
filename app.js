@@ -5,7 +5,6 @@ const mongoose = require("mongoose")
 
 const app = express();
 
-
 mongoose.connect("mongodb+srv://talita:talita123@cluster0-xu1m5.mongodb.net/graphql-course?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
 mongoose.connection.once('open', () => {
   console.log("connected to database")
