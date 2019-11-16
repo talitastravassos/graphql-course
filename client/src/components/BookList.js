@@ -4,21 +4,21 @@ import { useQuery } from "@apollo/react-hooks";
 
 const getBooksQuery = gql`
   {
-  books{
-    id
-    name
-    genre
-    author{
+    books {
       id
       name
-      books{
+      genre
+      author {
         id
         name
-        genre
+        books {
+          id
+          name
+          genre
+        }
       }
     }
   }
-}
 `;
 
 export default function BookList() {
@@ -27,16 +27,20 @@ export default function BookList() {
   React.useEffect(() => {
     if (data !== undefined) {
       console.log(data);
-    //   console.log(loading);
-    //   console.log(error);
+      console.log(loading);
+      // console.log(error);
     }
   }, [data]);
 
-  return (
+  return !loading ? (
     <div>
       <ul id="book-list">
-        <li>Book name</li>
+        {data.books.map(book => {
+          return <li key={book.id}> {book.name}</li>;
+        })}
       </ul>
     </div>
+  ) : (
+    <h1>Loading...</h1>
   );
 }
