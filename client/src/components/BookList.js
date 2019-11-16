@@ -1,28 +1,9 @@
 import React from "react";
-import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-
-const getBooksQuery = gql`
-  {
-    books {
-      id
-      name
-      genre
-      author {
-        id
-        name
-        books {
-          id
-          name
-          genre
-        }
-      }
-    }
-  }
-`;
+import { getBooksQuery } from "../queries";
 
 export default function BookList() {
-  const { loading, error, data } = useQuery(getBooksQuery);
+  const { loading, data } = useQuery(getBooksQuery);
 
   React.useEffect(() => {
     if (data !== undefined) {
