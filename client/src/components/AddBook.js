@@ -15,7 +15,7 @@ export default function AddBook() {
   React.useEffect(() => {
     if (data !== undefined) {
       console.log(data);
-      console.log(loading);
+    //   console.log(loading);
       // console.log(error);
     }
   }, [data]);
